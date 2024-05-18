@@ -12,7 +12,7 @@
 
 void DieWithError(char *errorMessage);  // Функция обработки ошибок
 void HandleTCPClient(int clntSocket);   // Функция обработки TCP клиента
-int** play_game(int numPlayers);              // Функция для получения исхода поединка
+int** playGame(int numPlayers);              // Функция для получения исхода поединка
 void HandleSigint(int sig);             // Функция обработки сигнала
 
 int servSock; // Дескриптор сокета сервера
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
     printf("Все игроки подключены. Начинается турнир...\n");
 
     // Моделирование турнира
-    int** results = play_game(numPlayers);
+    int** results = playGame(numPlayers);
 
     // Отправка результатов игры каждому клиенту
     for (int i = 0; i < numPlayers; i++) {
@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
 }
 
 // Моделирование игры: 0 - ничья, 1 - выиграл первый игрок, 2 - выиграл 2 игрок
-int** play_game(int numPlayers) {
+int** playGame(int numPlayers) {
     // Выделение памяти под двумерный массив результатов
     int** results = (int**)malloc(numPlayers * sizeof(int*));
     if (results == NULL) {
